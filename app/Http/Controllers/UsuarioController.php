@@ -57,4 +57,8 @@ class UsuarioController extends Controller
         usuarioProduto::where('id', '=', $request->id_compra)->delete();
         return redirect()->back()->with('excluido', 'Excluido com sucesso!');
     }
+
+    public function teste(Request $request){
+        dd($request);
+    }
 }

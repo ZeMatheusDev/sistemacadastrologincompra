@@ -14,24 +14,29 @@
     <section>
         <div style="width:100%; height:100px;background-color: rgb(0, 0, 0)">
             <a type="submit" style="margin-top: 35px; margin-left: 50px" href="create" class="btn btn-primary">Registrar</a>
-        @if (session()->all()['logado'] == 'false')
-            <a type="submit" style="margin-top: 35px; margin-left: 50px" href="login" class="btn btn-primary">Login</a>
+            @if (!isset(session()->all()['logado']) || session()->all()['logado'] == 'false')
+            <a type="submit" style="margin-top: 35px; margin-left: 20px" href="login" class="btn btn-primary">Login</a>
+            @endif
+        @if (isset(session()->all()['logado']))
+
+            @if (session()->all()['logado'] == 'true')
+            <a type="submit" style="margin-top: 35px; margin-left: 20px" href="comprar" class="btn btn-primary">Comprar</a>
+            <a type="submit" style="margin-top: 35px; margin-left: 20px" href="compras" class="btn btn-primary">Minhas Compras</a>
+            <form style="display: inline;" action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" style="margin-top: 35px; margin-left: 20px" class="btn btn-primary">Logout</button>
+            </form>
+            @endif
         @endif
 
-        @if (session()->all()['logado'] == 'true')
-        <a type="submit" style="margin-top: 35px; margin-left: 50px" href="comprar" class="btn btn-primary">Comprar</a>
-        <a type="submit" style="margin-top: 35px; margin-left: 50px" href="compras" class="btn btn-primary">Minhas Compras</a>
-        <form style="display: inline;" action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" style="margin-top: 35px; margin-left: 50px" class="btn btn-primary">Logout</button>
-        </form>
-        @endif
+
+
 
         @if (isset(session()->all()['admin']))
             @if (session()->all()['admin'] == 1)
 
                 @csrf
-            <a type="submit" href="cadastroProduto" style="margin-top: 35px; margin-left: 50px" class="btn btn-primary">Cadastrar produto</a>
+            <a type="submit" href="cadastroProduto" style="margin-top: 35px; margin-left: 20px" class="btn btn-primary">Cadastrar produto</a>
             @endif
         @endif
 

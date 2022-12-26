@@ -37,6 +37,8 @@ Route::get('/comprar', [UsuarioController::class, 'comprarIndex'])->name('compra
 
 Route::get('/compras', [UsuarioController::class, 'comprasUsuario'])->name('compras');
 
+Route::post('teste', [UsuarioController::class, 'teste'])->name('teste');
+
 Route::post('cadastrar', [RegistroController::class, 'cadastrar'])->name('cadastrar');
 
 Route::post('cadastroProduto', [AdminController::class, 'cadastroProduto'])->name('cadastroProduto');

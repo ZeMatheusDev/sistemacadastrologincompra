@@ -25,4 +25,18 @@
 <br> <br>
 </div>
 <br>
+
 @endforeach
+<form action="{{ route('teste') }}" method="POST">
+    @csrf
+<input type="text" name="input" list="lista" id="list" onchange="fun()" placeholder="digite">
+<input type="submit" value="Enviar">
+</form>
+<datalist id="lista">
+
+    @foreach ($nomeDasCompras as $compra)
+        <option value="{{ $compra->id }}">{{ $compra->nome }}</option>
+    @endforeach
+
+</datalist>
+<br><br><br>
