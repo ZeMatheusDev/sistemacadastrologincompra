@@ -1,3 +1,6 @@
+@if (\Session::has('excluido'))
+<div style="text-align: center" class="alert alert-success">    {!! \Session::get('excluido') !!} </div>
+@endif
 @include('home');
 <style>
     #listagemProdutos{
@@ -14,8 +17,11 @@
 <br><br>
 <b style="font-size:30px; color:white">Compra {{ $loop->iteration }} :</b> - 
 <b style="color:white; font-size:40px">{{ $compra->nome }}</b> <br>  <br>
-<form action="{{ route('excluirCompra') }}"></form>
+<form action="{{ route('excluirCompra') }}" method="POST">
+    @csrf
+<input hidden type="text" name="id_compra" value="{{ $compra->id }}">
 <button type="submit" class="btn btn-danger">Excluir</button>
+</form>
 <br> <br>
 </div>
 <br>
